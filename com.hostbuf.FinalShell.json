@@ -1,0 +1,104 @@
+{
+    "app-id": "com.hostbuf.FinalShell",
+    "runtime": "org.freedesktop.Platform",
+    "runtime-version": "20.08",
+    "sdk": "org.freedesktop.Sdk",
+    "command": "finalshell",
+	"base-version":"2.9.2",
+	"add-extensions":{"org.freedesktop.Sdk.Extension.openjdk8": {
+            "version": "20.08",
+            "no-autodownload": true
+        }
+    },
+    "finish-args": [
+        /* X11 + XShm access */
+        "--share=ipc", "--socket=x11",
+
+        /* Wayland access */
+        "--socket=wayland",
+
+        /* gsettings */
+        "--filesystem=xdg-data/glib-2.0/schemas:ro",
+		"--filesystem=host",
+		/* network */
+		"--share=network",
+
+        /* dconf */
+        "--filesystem=xdg-run/dconf", "--talk-name=ca.desrt.dconf",
+        "--filesystem=~/.config/dconf:ro", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        "--env=JAVA_HOME=/app/jdk"
+    ],
+	"build-options": {
+        "append-path": "/app/jdk/bin"
+    },
+    "modules": [
+        {
+            "name": "openjdk",
+            "buildsystem": "simple",
+            "build-commands": [
+                "/usr/lib/sdk/openjdk8/install.sh",
+                "/usr/lib/sdk/openjdk8/installjdk.sh",
+				"mkdir -p /app/lib/runtime/lib",
+				"cp -r /app/jre/lib/* /app/lib/runtime/lib"
+            ]
+        },
+        {
+            "name": "libpcap",
+            "buildsystem": "simple",
+            "sources": [
+                {
+                    "type":"archive",
+                    "url":"https://forensics.cert.org/centos/cert/8/x86_64/pfring-7.8.0-3457.x86_64.rpm",
+                    "sha1":"c6f6c1056eb9fb4c4b2043f50bea131cc730d0a3",
+                    "dest-filename":"pfring.rpm"
+                }
+            ],
+            "build-commands": [
+				    "install -Dm644 local/lib/libpcap.so.1.9.1 /app/lib/libpcap.so"
+            ]
+        },
+        {
+            "name": "finalshell",
+            "buildsystem": "simple",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://127.0.0.1:8081/fix.zip",
+                    "sha1":"d06431fd7cb4d36fcd973eb816388585fdfa7b42",
+                    "dest-filename":"finalshell.zip"
+                },
+				{
+					"type": "file",
+					"path": "start_finalshell.sh"
+				},
+				{
+					"type": "file",
+					"path": "com.hostbuf.FinalShell.png"
+				},
+				{
+					"type": "file",
+					"path": "com.hostbuf.FinalShell.desktop"
+				},
+				{
+					"type": "file",
+					"path": "com.hostbuf.FinalShell.appdata.xml"
+				}
+                
+            ],
+            "build-commands": [
+                "rm -rf lib/runtime",
+                
+                "mkdir -p /app/usr/lib/FinalShell/",
+                "cp -r ./lib /app/",
+                
+                "install -Dm755 start_finalshell.sh /app/bin/finalshell",
+                "install -Dm644 com.hostbuf.FinalShell.appdata.xml /app/share/appdata/com.hostbuf.FinalShell.appdata.xml",
+                "install -Dm644 com.hostbuf.FinalShell.png /app/share/icons/hicolor/64x64/apps/com.hostbuf.FinalShell.png",
+                "install -Dm644 com.hostbuf.FinalShell.png /app/share/icons/hicolor/128x128/apps/com.hostbuf.FinalShell.png",
+                "install -Dm644 com.hostbuf.FinalShell.png /app/share/icons/hicolor/256x256/apps/com.hostbuf.FinalShell.png",
+                "install -Dm644 com.hostbuf.FinalShell.png /app/share/icons/hicolor/512x512/apps/com.hostbuf.FinalShell.png",
+                "install -Dm644 com.hostbuf.FinalShell.desktop /app/share/applications/com.hostbuf.FinalShell.desktop"                
+            ]
+        }
+    ]
+}

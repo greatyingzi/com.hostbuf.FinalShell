@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop">
+  <id>com.hostbuf.FinalShell</id>
+  <name>FinalShell</name>
+  <project_license>LicenseRef-proprietary</project_license>
+  <developer_name>hostbuff.com</developer_name>
+  <summary>FinalShell SSH工具,服务器管理,远程桌面加速软件</summary>
+  <metadata_license>CC0-1.0</metadata_license>
+  <url type="homepage">https://www.hostbuf.com</url>
+  <url type="help">https://www.hostbuf.com</url>
+  <description>
+    <p>FinalShell是一体化的的服务器,网络管理软件,不仅是ssh客户端,还是功能强大的开发,运维工具,充分满足开发,运维需求.</p>
+  </description>
+  <launchable type="desktop-id">com.hostbuf.FinalShell.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image type="source">http://www.hostbuf.com/upload/image/20210110/1610264529229005910.jpg</image>
+    </screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170117/1484635173334071105.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170117/1484635245728075336.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170117/1484635329540047793.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20210107/1609993908577098649.jpg</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170426/1493144242449041493.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170426/1493144485765021287.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20171118/1511013349812005421.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170924/1506183003447079520.png</screenshot>
+	  <screenshot>http://www.hostbuf.com/upload/image/20170924/1506183014779017966.png</screenshot>
+  </screenshots>
+  <categories>
+    <category>Development</category>
+    <category>Network</category>
+    <category>Tools</category>
+  </categories>
+  <releases>
+    <release version="3.9.2" date="2021-06-28"/>
+  </releases>
+  <content_rating type="oars-1.0">
+  </content_rating>
+  <update_contact>hostbuf.com</update_contact>
+</component>
